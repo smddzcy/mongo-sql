@@ -11,5 +11,5 @@ var helpers = require('../../lib/query-helpers');
 
 helpers.register('alias', function(alias, values, query){
   query.__defaultTable = query.alias;
-  return '"' + alias + '"';
+  return alias;
 });

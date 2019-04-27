@@ -28,7 +28,7 @@ helpers.register('columns', function(columns, values, query){
         output += utils.quoteObject(columns[i], query.__defaultTable);
 
       if ( typeof columns[i] == 'object' && ('as' in columns[i] || 'alias' in columns[i]))
-        output += ' as "' + (columns[i].as || columns[i].alias) + '"';
+        output += ' as ' + (columns[i].as || columns[i].alias);
 
       output += ", ";
     }
@@ -39,10 +39,10 @@ helpers.register('columns', function(columns, values, query){
       else
         output += (
           typeof columns[key] == 'object' && ('table' in columns[key])
-        ) ? '(' + queryBuilder( columns[key], values ).toString() + ') as "' + key + '", '
+        ) ? '(' + queryBuilder( columns[key], values ).toString() + ') as ' + key + ', '
           : typeof columns[key] == 'object' && ('type' in columns[key]) ?
-            queryBuilder( columns[key], values ).toString() + ' as "' + key + '", ' :
-            utils.quoteObject(key, query.__defaultTable) + ' as "' + columns[key] + '", ';
+            queryBuilder( columns[key], values ).toString() + ' as ' + key + ', ' :
+            utils.quoteObject(key, query.__defaultTable) + ' as ' + columns[key] + ', ';
     }
   }
 

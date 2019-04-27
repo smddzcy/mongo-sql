@@ -56,7 +56,7 @@ helpers.add('$custom', function(value, values) {
                 ? localToGlobalValuesIndices[localIndex]
                 : values.push(value[key][localIndex]);
             localToGlobalValuesIndices[localIndex] = globalIndex;
-            return '$' + globalIndex;
+            return '@' + globalIndex;
           });
       return utils.quoteObject(key) + ' = ' + newValue;
     })

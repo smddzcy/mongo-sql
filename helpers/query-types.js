@@ -2,10 +2,10 @@
 var queryTypes = require('../lib/query-types');
 
 queryTypes.add( 'select', [
-  '{with} select {expression} {distinct}'
+  '{with} select {limit} {expression} {distinct}'
 , '{columns} {over} {table} {alias}'
 , '{joins} {join} {innerJoin} {leftJoin} {leftOuterJoin} {fullOuterJoin} {crossOuterJoin}'
-, '{where} {groupBy} {having} {window} {order} {limit} {offset} {for}'
+, '{where} {groupBy} {having} {window} {order} {offset} {for}'
 ].join(' '));
 
 queryTypes.add(

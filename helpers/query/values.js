@@ -31,7 +31,7 @@ helpers.register('values', function(values, valuesArray, query){
       } else if (typeof value[ keys[i] ] == 'object' && 'type' in value[ keys[i] ]) {
         result.push('(' + queryBuilder( value[ keys[i] ], valuesArray ) + ')');
       } else {
-        result.push('$' + valuesArray.push(value[keys[i]]));
+        result.push('@' + valuesArray.push(value[keys[i]]));
       }
     }
     return '(' + result.join(', ') + ')';

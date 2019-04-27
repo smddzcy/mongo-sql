@@ -5,14 +5,12 @@
 
 
 var helpers = require('../../lib/query-helpers');
-var conditionBuilder = require('../../lib/condition-builder');
 
 var buildJoin = function(type, joins, values){
   var output = "";
-  for (var table in joins){
-    output += ' ' + type + ' join "' + table + '" on ';
-    output += conditionBuilder(joins[table], table, values);
-  }
+  joins.forEach(join => {
+    output += ` JOIN ${join.alias} IN ${join.baseAlias}.${join.field} `;
+  })
   return output;
 };
 

@@ -1,7 +1,7 @@
 {
   "name": "mongo-sql",
   "version": "6.2.0",
-  "description": "A mongo-like interface for sql generation, postgres-style",
+  "description": "A mongo-like interface for sql generation, CosmosDB style",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/goodybag/mongo-sql.git"
+    "url": "git://github.com/smddzcy/mongo-sql.git"
   },
   "keywords": [
     "postgres",

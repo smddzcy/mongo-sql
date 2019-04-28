@@ -9,7 +9,7 @@ var helpers = require('../../lib/query-helpers');
 var buildJoin = function(type, joins, values){
   var output = "";
   joins.forEach(join => {
-    output += ` JOIN ${join.alias} IN ${join.baseAlias}.${join.field} `;
+    output += ` JOIN ${join.alias} IN ${join.field} `;
   })
   return output;
 };

@@ -14,7 +14,7 @@ var utils = require('../lib/utils');
  */
 helpers.add('$inc', function(value, values, collection) {
   return Object.keys(value).map(function (key) {
-    return utils.quoteObject(key) + ' = ' + utils.quoteObject(key, collection) + ' + $' + values.push(value[key]);
+    return utils.quoteObject(key) + ' = ' + utils.quoteObject(key, collection) + ' + @p' + values.push(value[key]);
   }).join(', ');
 });
 
@@ -28,7 +28,7 @@ helpers.add('$dec', function(value, values, collection){
   var output = "";
 
   for (var key in value){
-    output += utils.quoteObject(key) + ' = ' + utils.quoteObject(key, collection) + ' - $' + values.push(value[key]);
+    output += utils.quoteObject(key) + ' = ' + utils.quoteObject(key, collection) + ' - @p' + values.push(value[key]);
   }
 
   return output;
@@ -56,7 +56,7 @@ helpers.add('$custom', function(value, values) {
                 ? localToGlobalValuesIndices[localIndex]
                 : values.push(value[key][localIndex]);
             localToGlobalValuesIndices[localIndex] = globalIndex;
-            return '@' + globalIndex;
+            return '@p' + globalIndex;
           });
       return utils.quoteObject(key) + ' = ' + newValue;
     })

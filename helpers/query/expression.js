@@ -29,7 +29,7 @@ helpers.register('expression', function(exp, values, query){
 
       localToGlobalValuesIndices[i] = globalI;
 
-      return '@' + globalI;
+      return '@p' + globalI;
     });
   }
 

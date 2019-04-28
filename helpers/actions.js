@@ -157,7 +157,7 @@ actions.add('alterColumn', function(value, values, query){
     output.push( 'drop not null' );
 
   if (value.statistics)
-    output.push( 'set statistics $' + values.push(value.statistics) );
+    output.push( 'set statistics @p' + values.push(value.statistics) );
 
   if (value.storage)
     output.push( 'set storage ' + value.storage );

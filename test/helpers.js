@@ -66,7 +66,7 @@ describe('Helpers', function(){
       );
 
       builder.registerQueryHelper('whereId', function(id, values, query){
-        return 'where "' + query.__defaultTable + '".id = $' + values.push(id);
+        return 'where "' + query.__defaultTable + '".id = @p' + values.push(id);
       });
 
       var query = builder.sql({

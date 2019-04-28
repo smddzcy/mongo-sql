@@ -130,7 +130,7 @@ mosql.registerUpdateHelper('$inc', function(value, values, collection){
       // Quote column with the table
     , mosql.utils.quoteObject( key, table )
       // Push the value into the values array
-    , '+ $' + values.push( value[ key ] )
+    , '+ @p' + values.push( value[ key ] )
     ].join(' ');
   }).join(' ');
 });

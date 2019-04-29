@@ -135,10 +135,10 @@ conditionals.add('$in', { cascade: false }, function(column, set, values, collec
       var inExpression = column + ' in (' + setNoNulls.map( function(val){
         return '@p' + values.push( val );
       }).join(', ') + ')'
-      return hasNulls ? '(' + inExpression + ' or ' + column + ' is null)' : inExpression
+      return hasNulls ? '(' + inExpression + ' or IS_NULL(' + column + '))' : inExpression
     }
 
-    return (hasNulls ? column + ' is null' : '');
+    return (hasNulls ? 'IS_NULL(' + column + ')' : '');
   }
 
   return column + ' in (' + queryBuilder(set, values).toString() + ')';

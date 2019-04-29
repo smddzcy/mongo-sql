@@ -78,7 +78,7 @@ conditionals.add('$lte', function(column, value, values, collection, original){
  * @param column {String}  - Column name either table.column or column
  */
 conditionals.add('$null', function(column, value, values, collection, original){
-  return column + ' is' + (original === false ? ' not' : '') + ' null';
+  return `${(original === false ? ' NOT ' : '')}(IS_NULL(${column}) OR NOT IS_DEFINED(${column}))`;
 });
 
 /**
@@ -86,7 +86,7 @@ conditionals.add('$null', function(column, value, values, collection, original){
  * @param column {String}  - Column name either table.column or column
  */
 conditionals.add('$notNull', function(column, value, values, collection, original){
-  return column + ' is' + (original === false ? '' : ' not') + ' null';
+  return `${(original === false ? '' : ' NOT ')}(IS_NULL(${column}) OR NOT IS_DEFINED(${column}))`;
 });
 
 /**
@@ -135,10 +135,10 @@ conditionals.add('$in', { cascade: false }, function(column, set, values, collec
       var inExpression = column + ' in (' + setNoNulls.map( function(val){
         return '@p' + values.push( val );
       }).join(', ') + ')'
-      return hasNulls ? '(' + inExpression + ' or IS_NULL(' + column + '))' : inExpression
+      return hasNulls ? '(' + inExpression + ' or NOT IS_DEFINED(' + column + '))' + ' or IS_NULL(' + column + '))' : inExpression
     }
 
-    return (hasNulls ? 'IS_NULL(' + column + ')' : '');
+    return (hasNulls ? 'IS_NULL(' + column + ')' + ' or NOT IS_DEFINED(' + column + ')' : '');
   }
 
   return column + ' in (' + queryBuilder(set, values).toString() + ')';

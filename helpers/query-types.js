@@ -5,7 +5,7 @@ queryTypes.add( 'select', [
   '{with} select {limit} {expression} {distinct}'
 , '{columns} {over} {table} {alias}'
 , '{joins} {join} {innerJoin} {leftJoin} {leftOuterJoin} {fullOuterJoin} {crossOuterJoin}'
-, '{where} {groupBy} {having} {window} {order} {offset} {for}'
+, '{where} {groupBy} {having} {window} {order} {offset} {offsetLimit} {for}'
 ].join(' '));
 
 queryTypes.add(

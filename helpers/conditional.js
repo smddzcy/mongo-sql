@@ -133,6 +133,7 @@ conditionals.add('$in', { cascade: false }, function(column, set, values, collec
 
     if(setNoNulls.length > 0) {
       var inExpression = column + ' in (' + setNoNulls.map( function(val){
+        if (typeof val === 'number') return val;
         return '@p' + values.push( val );
       }).join(', ') + ')'
       return hasNulls ? '(' + inExpression + ' or NOT IS_DEFINED(' + column + '))' + ' or IS_NULL(' + column + '))' : inExpression
